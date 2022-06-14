@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
-const { createToken } = require("./controllers/login");
+const { createToken, verifyToken } = require("./controllers/token");
 
 router.post("/login", createToken);
-
-router.get("/profile", (req, res) => {});
+router.get("/profile", verifyToken);
 
 module.exports = router;
